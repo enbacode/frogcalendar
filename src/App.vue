@@ -50,7 +50,8 @@ export default {
 
   created() {
     this.base = JSON.parse(atob(base));
-    if (!localStorage.flipped) localStorage.flipped = ["0"];
+    if (!localStorage.flipped.startsWith("["))
+      localStorage.flipped = JSON.stringify([0, 1]);
   },
   data: () => ({
     base: {},

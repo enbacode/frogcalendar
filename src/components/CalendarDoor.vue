@@ -29,14 +29,19 @@ export default {
     flip() {
       if (this.canFlip && !this.flipped) {
         this.flipped = true;
-        localStorage.flipped = localStorage.flipped.concat([this.number]);
+        let flips = this.flips;
+        flips.push(Number(this.number));
+        localStorage.flipped = JSON.stringify(flips);
       }
     }
   },
 
   computed: {
     number() {
-      return this.date.format("D");
+      return Number(this.date.format("D"));
+    },
+    flips() {
+      return JSON.parse(localStorage.flipped);
     },
     canFlip() {
       return !this.date.isAfter(dayjs());
@@ -44,7 +49,7 @@ export default {
   },
   mounted() {
     this.date = dayjs(this.door.date);
-    this.flipped = localStorage.flipped.includes(this.number);
+    this.flipped = this.flips.includes(this.number);
   },
   data() {
     return {
