@@ -3,8 +3,12 @@ import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
 import "vue-flipper/dist/vue-flipper.css";
 import Flipper from "vue-flipper";
+import VueGtag from "vue-gtag";
 
 Vue.component("Flipper", Flipper);
+Vue.use(VueGtag, {
+  config: { id: "G-H3BLP3MTNK" }
+});
 
 Vue.config.productionTip = false;
 

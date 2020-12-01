@@ -27,6 +27,7 @@ export default {
 
   methods: {
     flip() {
+      this.$gtag.event("flip", { num: this.number, valid: this.canFlip });
       if (this.canFlip && !this.flipped) {
         this.flipped = true;
         let flips = this.flips;
