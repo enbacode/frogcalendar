@@ -5,11 +5,16 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build:doors": "base64 ./src/assets/doors.json > ./src/assets/doors.bin"
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "dayjs": "^1.9.6",
+    "vue": "^2.6.11",
+    "vue-flipper": "^1.0.0",
+    "vue-snowf": "0.0.2",
+    "vuetify": "^2.3.19"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -23,8 +28,12 @@
     "lint-staged": "^9.5.0",
     "node-sass": "^4.12.0",
     "prettier": "^1.19.1",
+    "raw-loader": "^4.0.2",
+    "sass": "^1.19.0",
     "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-cli-plugin-vuetify": "^2.0.7",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.3.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
