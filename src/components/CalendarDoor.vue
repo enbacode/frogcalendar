@@ -23,7 +23,7 @@
             </template>
             <v-card>
               <v-card-title>
-                Test
+                Türchen Nr. {{ number }}
                 <v-spacer></v-spacer>
                 <v-btn text x-large @click="dialog = false" class="pr-0"
                   ><v-icon>mdi-close</v-icon></v-btn
