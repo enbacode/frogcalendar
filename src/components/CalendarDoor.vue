@@ -12,7 +12,28 @@
       </template>
       <template v-slot:back>
         <div v-if="canFlip">
-          <v-img :aspect-ratio="1" :src="door.img"></v-img>
+          <v-dialog v-model="dialog" fullscreen>
+            <template v-slot:activator="{ on, attrs }">
+              <v-img
+                :aspect-ratio="1"
+                v-bind="attrs"
+                v-on="on"
+                :src="door.img"
+              ></v-img>
+            </template>
+            <v-card>
+              <v-card-title>
+                Test
+                <v-spacer></v-spacer>
+                <v-btn text x-large @click="dialog = false" class="pr-0"
+                  ><v-icon>mdi-close</v-icon></v-btn
+                >
+              </v-card-title>
+              <v-card-text>
+                <v-img :src="door.img" max-height="100%"></v-img>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
         </div>
       </template>
     </Flipper>
@@ -55,7 +76,8 @@ export default {
   data() {
     return {
       date: dayjs(),
-      flipped: false
+      flipped: false,
+      dialog: false
     };
   }
 };
@@ -63,10 +85,11 @@ export default {
 
 <style scoped>
 .doorNumber {
-  text-shadow: 0 0 20px #fff;
+  text-shadow: 2px 2px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff,
+    -1px 1px 0 #fff, 1px 1px 0 #fff;
   font-weight: bolder;
   font-size: 5rem;
-  color: rgba(0, 0, 40, 1);
+  color: rgba(0, 0, 0, 1);
 }
 .door {
   border: 2px dashed rgba(255, 255, 255, 0.3);
