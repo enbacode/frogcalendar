@@ -81,7 +81,7 @@ export default {
       return JSON.parse(localStorage.flipped);
     },
     canFlip() {
-      return !this.date.isAfter(dayjs()) || true;
+      return !this.date.isAfter(dayjs());
     }
   },
   mounted() {
