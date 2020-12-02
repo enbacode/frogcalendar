@@ -66,9 +66,10 @@ export default {
   text-shadow: 0 0 20px #fff;
   font-weight: bolder;
   font-size: 5rem;
+  color: rgba(0, 0, 40, 1);
 }
 .door {
-  border: 3px dashed #fff;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
 }
 .back {
   background-color: white;
