@@ -50,6 +50,7 @@ export default {
 
   created() {
     this.base = JSON.parse(atob(base));
+    if (localStorage.flipped == undefined) localStorage.flipped = "[]";
     if (!localStorage.flipped.startsWith("["))
       localStorage.flipped = JSON.stringify([0, 1]);
   },

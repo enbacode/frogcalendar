@@ -15,11 +15,22 @@
           <v-dialog v-model="dialog" fullscreen>
             <template v-slot:activator="{ on, attrs }">
               <v-img
+                v-if="door.img"
                 :aspect-ratio="1"
                 v-bind="attrs"
                 v-on="on"
                 :src="door.img"
               ></v-img>
+              <v-responsive
+                v-if="door.vid"
+                :aspect-ratio="1"
+                v-bind="attrs"
+                v-on="on"
+              >
+                <video autoplay>
+                  <source :src="door.vid" type="video/webm" />
+                </video>
+              </v-responsive>
             </template>
             <v-card>
               <v-card-title>
@@ -47,11 +58,14 @@ export default {
   props: ["door"],
 
   methods: {
+    getFlips() {
+      return JSON.parse(localStorage.flipped);
+    },
     flip() {
       this.$gtag.event("flip", { num: this.number, valid: this.canFlip });
       if (this.canFlip && !this.flipped) {
         this.flipped = true;
-        let flips = this.flips;
+        let flips = this.getFlips();
         flips.push(Number(this.number));
         localStorage.flipped = JSON.stringify(flips);
       }
@@ -63,10 +77,11 @@ export default {
       return Number(this.date.format("D"));
     },
     flips() {
+      if (localStorage.flipped == undefined) return [];
       return JSON.parse(localStorage.flipped);
     },
     canFlip() {
-      return !this.date.isAfter(dayjs());
+      return !this.date.isAfter(dayjs()) || true;
     }
   },
   mounted() {
