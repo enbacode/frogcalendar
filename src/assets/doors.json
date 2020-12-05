@@ -31,7 +31,7 @@
         },
         {
             "innerHTML": "wello!",
-            "img": "",
+            "img": "https://i.redd.it/j9nbh0ofao851.jpg",
             "date": "2020-12-06T00:00:00+0100"
         },
         {
@@ -112,6 +112,7 @@
         {
             "innerHTML": "wello!",
             "img": "",
+            "troll": true,
             "date": "2020-12-23T00:00:00+0100"
         },
         {

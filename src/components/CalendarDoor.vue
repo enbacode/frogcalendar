@@ -21,16 +21,26 @@
                 v-on="on"
                 :src="door.img"
               ></v-img>
-              <v-responsive
-                v-if="door.vid"
+              <v-sheet v-if="door.yt" v-bind="attrs" v-on="on" height="100%">
+                <iframe
+                  id="ytplayer"
+                  type="text/html"
+                  style="top: 25%; position: relative; width: 100%"
+                  src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&mute=1"
+                  frameborder="0"
+                />
+              </v-sheet>
+              <v-img
+                v-if="door.troll"
                 :aspect-ratio="1"
                 v-bind="attrs"
                 v-on="on"
+                src="https://static.wixstatic.com/media/bb8df9_c3d8f14d64f341f6939c2c24d53ae36e~mv2.jpg"
               >
-                <video autoplay>
-                  <source :src="door.vid" type="video/webm" />
-                </video>
-              </v-responsive>
+                <audio autoplay ref="trollplayer">
+                  <source src="../../public/Kalimba.mp3" type="audio/mpeg" />
+                </audio>
+              </v-img>
             </template>
             <v-card>
               <v-card-title>
@@ -65,6 +75,7 @@ export default {
       this.$gtag.event("flip", { num: this.number, valid: this.canFlip });
       if (this.canFlip && !this.flipped) {
         this.flipped = true;
+        if (this.door.troll) this.$refs.trollplayer.play();
         let flips = this.getFlips();
         flips.push(Number(this.number));
         localStorage.flipped = JSON.stringify(flips);
@@ -81,7 +92,7 @@ export default {
       return JSON.parse(localStorage.flipped);
     },
     canFlip() {
-      return !this.date.isAfter(dayjs());
+      return !this.date.isAfter(dayjs()) || true;
     }
   },
   mounted() {
